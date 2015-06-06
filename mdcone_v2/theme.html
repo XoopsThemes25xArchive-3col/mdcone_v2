@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<{assign var=theme_name value=$xoTheme->folderName}>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="Microsoft FrontPage 4.0" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<{$xoops_module_header}>
+</head>
+<body>
+
+<table align="center" cellpadding="0" cellspacing="0" class="head_top">
+    <tr>
+      <td>
+		<{if !$xoops_isuser}>
+			<form method="post" action="<{xoAppUrl /user.php op=login}>">
+			<input name="uname" type="text" title="<{$smarty.const.THEME_DESC_PSEUDO}>" />&nbsp;&nbsp;<input name="pass" type="password" title="<{$smarty.const.THEME_DESC_PASSWORD}>"/>
+			<input type="hidden" name="xoops_redirect" value="<{$smarty.server.REQUEST_URI}>" />
+			<{if $lang_siteclosemsg}>
+			<input type="hidden" name="xoops_login" value="1" />
+			<{/if}>
+			<input class="formButton" type="submit" value="Login" />
+			&nbsp;<img src="<{xoImgUrl images/divider.gif}>" alt=""  border="0" />&nbsp;<a href="<{xoAppUrl /register.php}>" class="register" title="">Create an account</a>
+			</form>
+		<{else}>
+			<{xoInboxCount assign=pmcount}>
+			<a href="<{xoAppUrl viewpmsg.php}>">
+			<{if $pmcount}>
+				Message : <{$pmcount}> 
+			<{else}>
+				No message
+			<{/if}>
+			</a>
+			<img src="<{xoImgUrl images/divider.gif}>" alt=""  border="0" />
+			<a href="<{xoAppUrl /notifications.php}>" title="">Notification</a>
+			<img src="<{xoImgUrl images/divider.gif}>" alt=""  border="0" />
+			<a href="<{xoAppUrl /user.php}>" title="">My Account</a>
+			<{if $xoops_isadmin}>
+				<img src="<{xoImgUrl images/divider.gif}>" alt=""  border="0" />
+				<a href="<{xoAppUrl /admin.php}>" title="">Administration</a>
+			<{/if}>
+			<img src="<{xoImgUrl images/divider.gif}>" alt=""  border="0" />
+			<a href="<{xoAppUrl /user.php op=logout}>" title="" >Logout</a>
+		<{/if}>
+	 </td>
+  </tr>
+  </form> 
+</table>
+    
+<table align="center" cellpadding="0" cellspacing="0" class="head_table">
+  <tr> 
+    <td><a href="<{$xoops_url}>/">
+    </a><img src="<{$xoops_imageurl}>images/logo.jpg" alt="" border="0" /></td>
+  </tr>
+</table>
+<table align="center" cellpadding="0" cellspacing="0" class="head_buttons">
+  <form style="margin-top: 0px;" action="<{$xoops_url}>/search.php" method="post">
+	  <tr>
+		<td width="550" class="buttons_menu"><span class="right"> </span>
+		  <table height="20" border="0" cellpadding="0" cellspacing="0" class="balk2">
+			<tr>
+				<td id="buttons_boven"><a href="<{$xoops_url}>">HOME</a></td>
+			  <td id="buttons_boven"><a href="<{$xoops_url}>/modules/newbb/">FORUMS</a></td>
+			  <td id="buttons_boven"><a href="<{$xoops_url}>/modules/mydownloads/">DOWNLOADS</a></td>
+				<td id="buttons_boven"><a href="<{$xoops_url}>/modules/mylinks/">LINKS</a></td>
+			  <td id="buttons_boven"><a href="<{$xoops_url}>/modules/xoopsfaq/">FAQ</a></td>
+			  <td id="buttons_boven"><a href="<{$xoops_url}>/modules/contact/">CONTACT</a></td>
+				<td id="buttons_boven"><a href="<{$xoops_url}>/modules/xtremguestbook/">GUESTBOOK</a></td>
+			</tr>
+		  </table>
+		 </td>
+	  </tr>
+  </form>
+</table>
+<table align="center" class="body_table" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  
+	<!-- Start left blocks loop -->
+	<{if $xoops_showlblock}>
+		<td id="leftcolumn">
+		<{foreach item=block from=$xoBlocks.canvas_left}>
+			<{includeq file="$theme_name/theme_blockleft.html"}>
+		<{/foreach}>
+		</td>
+	<{/if}>
+	<!-- End left blocks loop -->
+		
+	<td id="centercolumn">
+	
+		<p>
+			<script type="text/javascript">
+			<!--   // Array ofmonth Names
+			var monthNames = new Array( "January","February","March","April","May","June","July","August","September","October","November","December");
+			var now = new Date();
+			thisYear = now.getYear();
+			if(thisYear < 1900) {thisYear += 1900}; // corrections if Y2K display problem
+			document.write(monthNames[now.getMonth()] + " " + now.getDate() + ", " + thisYear);
+			// --></script>
+		</p>
+		
+		<!-- Display center blocks if any -->
+		<{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+			<table cellspacing="0">
+			<tr>
+				<td id="centerCcolumn" colspan="2">
+				<!-- Start center-center blocks loop -->
+				<{foreach item=block from=$xoBlocks.page_topcenter}>
+					<{includeq file="$theme_name/theme_blockcenter_c.html"}>
+				<{/foreach}>
+				<!-- End center-center blocks loop -->
+				</td>
+			</tr>
+			<tr>
+				<td id="centerLcolumn">
+				<!-- Start center-left blocks loop -->
+				<{foreach item=block from=$xoBlocks.page_topleft}>
+					<{includeq file="$theme_name/theme_blockcenter_l.html"}>
+				<{/foreach}>
+				<!-- End center-left blocks loop -->
+				</td>
+				<td id="centerRcolumn">
+				<!-- Start center-right blocks loop -->
+				<{foreach item=block from=$xoBlocks.page_topright}>
+					<{includeq file="$theme_name/theme_blockcenter_r.html"}>
+				<{/foreach}>
+				<!-- End center-right blocks loop -->
+				</td>
+			</tr>
+			</table>
+		<{/if}>
+		<!-- End center top blocks loop -->	
+		
+		<!-- Start content module page -->
+		<div id="content"><{$xoops_contents}></div>
+		<!-- End content module -->
+
+		<!-- Start center bottom blocks loop -->
+		<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright or $xoBlocks.page_bottomcenter}>
+			<table cellspacing="0">
+			<{if $xoBlocks.page_bottomcenter}>
+				<tr>
+					<td id="bottomCcolumn" colspan="2">
+					<{foreach from=$xoBlocks.page_bottomcenter item=block}>
+						<{include file="$theme_name/theme_blockcenter_c.html"}>
+					<{/foreach}>
+					</td>
+				</tr>
+			<{/if}>
+
+			<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright}>
+				<tr>
+					<td id="bottomLcolumn">
+					<{foreach from=$xoBlocks.page_bottomleft item=block}>
+						<{include file="$theme_name/theme_blockcenter_l.html"}>
+					<{/foreach}>
+					</td>
+
+					<td id="bottomRcolumn">
+					<{foreach from=$xoBlocks.page_bottomright item=block}>
+						<{include file="$theme_name/theme_blockcenter_r.html"}>
+					<{/foreach}>
+					</td>
+				</tr>
+			<{/if}>
+			</table>
+		<{/if}>
+		<!-- End center bottom blocks loop -->
+		
+	</td>
+  
+	<{if $xoops_showrblock}>
+		<td id="rightcolumn">
+		<!-- Start right blocks loop -->
+		<{foreach item=block from=$xoBlocks.canvas_right}>
+			<{includeq file="$theme_name/theme_blockright.html"}>
+		<{/foreach}>
+		<!-- End right blocks loop -->
+		</td>
+	<{/if}>
+	
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td id="footerbar">
+		Powered by <a href="http://www.xoops.org">XOOPS</a> - Theme design by <a href="#" target="_blank">Maxime Design Concept</a> &copy; 2005
+	</td>
+  </tr>
+</table>
+</body>
+</html>
